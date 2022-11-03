@@ -15,6 +15,9 @@ let numeri = document.getElementById('stampaNumeri');
 let random = [];
 let utenteNumeri = [];
 let vettoreNumeriIndovinati = [];
+let quantiNumeri = document.getElementById('quantiNumeri');
+let qualiNumeri = document.getElementById('qualiNumeri');
+
 
 function simonGame()
 {
@@ -36,22 +39,6 @@ function simonGame()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Timer 10 secondi
 function tempo10()
 {
@@ -65,16 +52,28 @@ function richiestaNumeri()
     for(let i=0; i<5; i++)
     {
         utenteNumeri[i] = parseInt(prompt(`Numero ${i+1}: `));
-        
     }
     
-    //Stampa numeri dopo acquisizione
+    //Funzione di controllo dei due vettori (vettore1, vettore2)
+    vettoreNumeriIndovinati = controlloNumeri(utenteNumeri, random);
+
+    //Stampa numeri indovinati
     for(let i=0; i<5; i++)
     {
-        document.getElementById('test').innerHTML += `<span class="border border-2 border-dark p-3">${utenteNumeri[i]}</span>`;
+        if(vettoreNumeriIndovinati[i] !== undefined)
+        {
+            qualiNumeri.innerHTML += `<span class="border border-2 border-dark p-3">${vettoreNumeriIndovinati[i]}</span>`;
+        }
+        
+        else
+        {
+            qualiNumeri.innerHTML += `<span class="border border-2 border-dark p-3">-</span>`;
+        }
     }
 
-    controlloNumeri(utenteNumeri, random);
+    //Stampa quantità numeri indovinati
+    quantiNumeri.classList.remove('d-none');
+    quantiNumeri.innerHTML = `<span class="border border-2 border-dark p-3">Hai indovinato: ${vettoreNumeriIndovinati.length}</span>`;
 
 
     return utenteNumeri;
@@ -96,12 +95,14 @@ function controlloNumeri(vettore, vettore2)
     }
     */
 
+    j=0;
     //Controllo numeri indovinati
     for(let i=0; i<5; i++)
     {
         if(vettore.includes(vettore2[i]))
         {
-            vettoreNumeriIndovinati = vettore2[i];
+            vettoreNumeriIndovinati[j] = vettore2[i];
+            j++;
         }
     }
 
