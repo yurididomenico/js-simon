@@ -14,6 +14,7 @@ console.log("YDD");
 let numeri = document.getElementById('stampaNumeri');
 let random = [];
 let utenteNumeri = [];
+let vettoreNumeriIndovinati = [];
 
 function simonGame()
 {
@@ -29,12 +30,6 @@ function simonGame()
 
     //Dopo 11 secondi appare la richiesta numeri
     setTimeout(richiestaNumeri, 4000);
-
-    
-    
-
-    
-    
 
 }
 
@@ -66,17 +61,53 @@ function tempo10()
 //Richiesta 5 numeri
 function richiestaNumeri()
 {
+    //Acquisizione numeri
     for(let i=0; i<5; i++)
     {
         utenteNumeri[i] = parseInt(prompt(`Numero ${i+1}: `));
         
     }
     
+    //Stampa numeri dopo acquisizione
     for(let i=0; i<5; i++)
     {
         document.getElementById('test').innerHTML += `<span class="border border-2 border-dark p-3">${utenteNumeri[i]}</span>`;
     }
+
+    controlloNumeri(utenteNumeri, random);
+
+
     return utenteNumeri;
+}
+
+//Funzione controlla i due array
+function controlloNumeri(vettore, vettore2)
+{
+    /*
+    for(let i=0; i<5; i++)
+    {
+        for(let j=0; j<5; j++)
+        {
+            if(vettore[i] == vettore2[j])
+            {
+                vettoreNumeriIndovinati[j] = vettore2[j];
+            }
+        }
+    }
+    */
+
+    //Controllo numeri indovinati
+    for(let i=0; i<5; i++)
+    {
+        if(vettore.includes(vettore2[i]))
+        {
+            vettoreNumeriIndovinati = vettore2[i];
+        }
+    }
+
+    console.log(vettoreNumeriIndovinati);
+
+    return vettoreNumeriIndovinati;
 }
 
 
