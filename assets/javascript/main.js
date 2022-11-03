@@ -17,6 +17,7 @@ let utenteNumeri = [];
 let vettoreNumeriIndovinati = [];
 let quantiNumeri = document.getElementById('quantiNumeri');
 let qualiNumeri = document.getElementById('qualiNumeri');
+let risultatoPartita = document.getElementById('risultatoPartita');
 
 
 function simonGame()
@@ -74,7 +75,15 @@ function richiestaNumeri()
     //Stampa quantità numeri indovinati
     quantiNumeri.classList.remove('d-none');
     quantiNumeri.innerHTML = `<span class="border border-2 border-dark p-3">Hai indovinato: ${vettoreNumeriIndovinati.length}</span>`;
-
+    risultatoPartita.classList.remove('d-none');
+    if(vettoreNumeriIndovinati.length == 5)
+    {
+        risultatoPartita.innerHTML = `<span class="border border-2 border-dark p-3">Hai Vinto!! :)</span>`;
+    }
+    else
+    {
+        risultatoPartita.innerHTML = `<span class="border border-2 border-dark p-3">Hai Perso :(</span>`;
+    }
 
     return utenteNumeri;
 }
